@@ -1,0 +1,361 @@
+extends layout
+
+block content
+  .content-wrapper
+    script.
+      ciudadUser="#{locals.currentuser.ciudad}"
+      perfiluser="#{locals.currentuser.perfil}"
+      idPais="#{locals.currentuser.idPais}"
+      nombrePais="#{locals.currentuser.pais}"
+      idCiudad="#{locals.currentuser.idCiudad}"
+      nombreCiudad="#{locals.currentuser.ciudad}"
+    // Content Header (Page header)
+    section.content-header
+      h1
+        | Insertar Activos
+        small Por sedes
+      ol.breadcrumb
+        li
+          a(href='#') 
+            i.fa.fa-dashboard
+            |  Inicio
+        li.active Ingreso de activios TI x sedes
+    // Main content
+    section.content
+      section.content
+        .row
+          .col-xs-12
+            // /.box
+            .box
+              .box-body
+                .row
+                  h2.text-center INSERTAR ACTIVO
+                  .col-md-12.mx-auto
+                    form#edit-form(method='post', action='/insertar', data-toggle='validator', role='form')
+                      .nav-tabs-custom
+                        ul.nav.nav-pills
+                          li.active
+                            a(href='#tab_1', data-toggle='tab', aria-expanded='true')
+                              | EQUIPO
+                              .ripple-container
+                          li
+                            a(href='#tab_2', data-toggle='tab', aria-expanded='false')
+                              | MONITOR
+                              .ripple-container
+                          li
+                            a(href='#tab_3', data-toggle='tab', aria-expanded='false')
+                              | PERIFERICOS
+                              .ripple-container
+                          li
+                            a(href='#tab_4', data-toggle='tab', aria-expanded='false')
+                              | UBICACION
+                              .ripple-container
+                          li
+                            a(href='#tab_5', data-toggle='tab', aria-expanded='false')
+                              | SISTEMA
+                              .ripple-container
+                          li
+                            a(href='#tab_6', data-toggle='tab', aria-expanded='false')
+                              | INFORMACION
+                              .ripple-container
+                        .tab-content(style='height: 250px; margin-top: 10px;')
+                          #tab_1.tab-pane.active
+                            .grupo
+                              .col-sm-12
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='tipoactivo') Tipo de Activo :
+                                  .col-sm-3
+                                    select#selectTipoE.form-control(name='cod_tipo_equip')
+                                      option(value='') Seleccione un Opcion
+                                      for val in consulta0
+                                        option(value=val.cod_tipo_equipo)= val.nombre_tipo_equip
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='marca') Marca :
+                                  .col-sm-7
+                                    select#selectMarcas.form-control(name='marca')
+                                      option(value='') Seleccione un Opcion
+                                      for val in consulta1
+                                        option(value=val.cod_marca)= val.nombre_marca
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='modelo') Modelo :
+                                  .col-sm-7
+                                    select#selectModelo.form-control(name='modelo')
+                                      option(value='') Seleccione un Opcion
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='plaqueta') plaqueta :
+                                  .col-sm-7
+                                    input#plaqueta.form-control(type='text', placeholder='Numero Plaqueta', value='', name='plaqueta')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='serial') serial :
+                                  .col-sm-7
+                                    input#serial.form-control(type='text', placeholder='Numero Serial', value='', name='serial')
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='cpu') CPU :
+                                  .col-sm-7
+                                    input#cpu.form-control(type='text', placeholder='Procesador', value='', name='cpu')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='ram') RAM :
+                                  .col-sm-7
+                                    input#ram.form-control(type='text', placeholder='Memoria RAM', value='', name='ram')
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='hdd') HDD :
+                                  .col-sm-7
+                                    input#hdd.form-control(type='text', placeholder='Capacidad HDD', value='', name='hdd')
+                          // /.tab-pane
+                          #tab_2.tab-pane
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='marca') Marca Monitor:
+                                  .col-sm-7
+                                    select#selectMarcasM.form-control(name='marcaM')
+                                      option(value='') Seleccione un Opcion
+                                      for val in consulta1
+                                        option(value=val.cod_marca)= val.nombre_marca
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='modelo') Modelo Monitor :
+                                  .col-sm-7
+                                    select#selectModeloM.form-control(name='modeloM')
+                                      option(value='') Seleccione un Opcion
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='hdd') Monitor Serial:
+                                  .col-sm-7
+                                    input#monitor.form-control(type='text', placeholder='Serial Monitor', value='', name='monitor')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='ceco') Monitor Plaqueta:
+                                  .col-sm-7
+                                    input#monitorp.form-control(type='text', placeholder='Plaqueta Monitor', value='', name='monitorp')
+                          // /.tab-pane
+                          #tab_3.tab-pane
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='marca') Marca Teclado:
+                                  .col-sm-7
+                                    select#selectMarcasT.form-control(name='marcaT')
+                                      option(value='') Seleccione un Opcion
+                                      for val in consulta1
+                                        option(value=val.cod_marca)= val.nombre_marca
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='modelo') Marca Mouse :
+                                  .col-sm-7
+                                    select#selectMarcasMo.form-control(name='marcaMo')
+                                      option(value='') Seleccione un Opcion
+                                      for val in consulta1
+                                        option(value=val.cod_marca)= val.nombre_marca
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='marca') Modelo Teclado :
+                                  .col-sm-7
+                                    select#selectModeloT.form-control(name='modeloT')
+                                      option(value='') Seleccione un Opcion
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='modelo') Modelo Mouse :
+                                  .col-sm-7
+                                    select#selectModeloMo.form-control(name='modeloMo')
+                                      option(value='') Seleccione un Opcion
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='hdd') Serial Teclado:
+                                  .col-sm-7
+                                    input#teclado.form-control(type='text', placeholder='Serial Teclado', value='', name='teclado')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='ceco') Serial Mouse:
+                                  .col-sm-7
+                                    input#mouse.form-control(type='text', placeholder='Serial Mouse', value='', name='mouse')
+                          // /.tab-pane
+                          #tab_4.tab-pane
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='propietario') propietario
+                                  .col-sm-7
+                                    select#selectPropietario.form-control(name='propietario')
+                                      option(value='') Seleccione Propietario
+                                      for val in consulta2
+                                        option(value=val.cod_propietario)= val.nombre_propietario
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='propietario') pais :
+                                  .col-sm-7
+                                    input#pais.form-control(type='text', placeholder='', value=currentuser.pais, disabled='')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') ciudad :
+                                  .col-sm-8
+                                    select#selectCiudad.form-control(name='cod_ciudad')
+                                      option(value=currentuser.idCiudad)=currentuser.ciudad
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='nombrearea') sede :
+                                  .col-sm-7
+                                    select#selectSede.form-control(name='cod_sede')
+                                      option(value='') Seleccione la Sede
+                                      for val in consulta4
+                                        option(value=val.cod_sede)= val.nombre_sede
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') Campaña :
+                                  .col-sm-8
+                                    select#selectCampana.form-control(name='cod_campana')
+                                      option(value='A') Seleccione la Campaña
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='nombrearea') puesto :
+                                  .col-sm-8
+                                    select#selectPuesto.form-control(name='cod_puesto')
+                                      option(value='')
+                          // /.tab-pane
+                          #tab_5.tab-pane
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='hdd') Sistema Operativo :
+                                  .col-sm-7
+                                    select#selectSistema.form-control(name='sistemaO')
+                                      option(value='') Seleccione Sistema
+                                      for val in consulta3
+                                        option(value=val.cod_os)= val.nombre_os
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='ceco') HostName:
+                                  .col-sm-7
+                                    input#hostname.form-control(type='text', placeholder='Hostname', value='', name='hostnamepc')
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='propietario') Direccion IP:
+                                  .col-sm-7
+                                    input#direccionip.form-control(type='text', placeholder='Direccion IP', value='', name='direccionippc')
+                          // /.tab-pane
+                          #tab_6.tab-pane
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='hdd') Nivel de Impacto :
+                                  .col-sm-7
+                                    select#selectImpacto.form-control(name='impacto')
+                                      option(value='') Seleccione Nivel
+                                      for val in consulta5
+                                        option(value=val.cod_nivel_impacto)= val.nombre_nivel_imp
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='ticket') Ticket:
+                                  .col-sm-7
+                                    input#ticket.form-control(type='text', placeholder='Ticket', value='', name='ticket')
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='responsable') Responsable :
+                                  .col-sm-7
+                                    select#selectResponsable.form-control(name='responsable')
+                                      option(value='') Seleccione Nivel
+                                      for val in consulta6
+                                        option(value=val.cod_responsable)= val.nombre_resp
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='asignado') Asignado :
+                                  .col-sm-7
+                                    select#selectAsignado.form-control(name='asignado')
+                                      option(value='') Seleccione Nivel
+                                      for val in consulta7
+                                        option(value=val.cod_asignado)= val.nombre_asignado
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='ticket') Fecha Alta:
+                                  .col-sm-7
+                                    input#fechaA.form-control(type='date', placeholder='Fecha Alta', value='', name='fechaA' format="yyyy/MM/dd")
+                        .grupo
+                          row.col-sm-12.offset-sm-6
+                            row.form-group
+                              row.col-sm-4.offset-sm-2
+                                button#submitButtonInsert.btn.btn-primary(type='button') Confirmar
+                              row.col-sm-4.offset-sm-2
+                                button#cancelButton.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+                        // /.tab-content
+
+      #confirmTraslado.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModal
+      #sendTraslado.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModalTraslado
+      #insertarModal.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModalInsertar
+      #modalOK.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')      
+        .modal-dialog(role='document')
+          .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h2.modal-title Info Modal
+              .modal-body
+                h4
+                p
+              .modal-footer
+                button.btn.btn-outline.pull-left(type='button', data-dismiss='modal') Cerrar
+  append footer
+    script(src='plugins/jQuery/jquery-2.2.3.min.js')
+    //- //- script(src='/dist/js/bootstrapvalidator.js')
+    //- script(src='/dist/js/validacion.js')
+    script(src='/dist/js/app-insertar.js')

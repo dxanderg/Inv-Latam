@@ -1,0 +1,200 @@
+extends layout
+
+block content
+  .content-wrapper
+    script.
+      ciudadUser="#{locals.currentuser.ciudad}"
+      perfiluser="#{locals.currentuser.perfil}"
+      idPais="#{locals.currentuser.idPais}"
+      nombrePais="#{locals.currentuser.pais}"
+      idCiudad="#{locals.currentuser.idCiudad}"
+      nombreCiudad="#{locals.currentuser.ciudad}"
+    // Content Header (Page header)
+    section.content-header
+      h1
+        | Movimientos Activos TI
+        small Por sedes
+      ol.breadcrumb
+        li
+          a(href='#') 
+            i.fa.fa-dashboard
+            |  Inicio
+        li.active Movimientos de activos TI x sedes
+    // Main content
+    button(data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='false', hidden)#mostrar1 1
+    button(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false', hidden)#mostrar2 1
+    button(data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false', hidden)#mostrar3 1
+    .row(style='display: none;')
+      a.btn.btn-app#botondummy(hidden='')
+        i.fa.fa-play
+        |  Dummy
+    section.content
+      .col-md-12
+        .box.box-solid
+          .box-body
+            .col-md-3
+              h3 Numero de Ticket : 
+            .col-md-2
+              input#inputTicket.input-lg(type="number") 
+        .box.box-solid
+          .box-body
+            input#temporal(value='X' hidden='')
+            input#temporal2(value='X' hidden='')
+            #accordion.box-group
+              // we are adding the .panel class so bootstrap.js collapse plugin detects it
+              .panel.box.box-primary
+                .box-header.with-border
+                  h4.box-title
+                    a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseOne', aria-expanded='false')
+                      | 1 - Seleccione Puesto Inicial a Trasladar
+                #collapseOne.panel-collapse.collapse(aria-expanded='false', style='height: 0px;')
+                  .box-body
+                    .row
+                      .col-xs-12
+                        // /.box
+                        .box
+                          .box-body
+                            .row
+                              .col-md-3
+                                .form-group
+                                  label Ciudad
+                                  select.form-control.select2#select1(style='width: 100%;')
+                                    option(selected='selected' value='null') Seleccione uno
+                              .col-md-3
+                                .form-group
+                                  label Sede
+                                  select.form-control.select2#select2(style='width: 100%;')
+                                    option(selected='selected' value='null') Seleccione uno
+                              .col-md-3
+                                .form-group
+                                  label Campaña
+                                  select.form-control.select2#select3(style='width: 100%;')
+                                    option(selected='selected' value='null') Seleccione uno
+                              .col-md-3
+                                .form-group.col-md-12
+                                  .row
+                                    a.btn.btn-app#botonconsulta
+                                      i.fa.fa-play
+                                      |  Ejecutar
+                            // /.row
+                          // /.box-header
+                          .box-body
+                            table#example2.table.table-bordered.table-striped
+                              thead
+                                th Piso
+                                th Puesto
+                                th Equipo
+                                th Marca
+                                th Modelo
+                                th Equipo S/N
+                                th Equipo Placa
+                                th Monitor S/N
+                                th Monitor Placa
+                                th Asignado
+                                th Opciones
+                              tbody
+              .panel.box.box-danger
+                .box-header.with-border
+                  h4.box-title
+                    a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseTwo', aria-expanded='false')
+                      | 2 - Seleccione Puesto de Destino 
+                #collapseTwo.panel-collapse.collapse(aria-expanded='false')
+                  .box-body
+                    .row.col-md-9.col-md-offset-1
+                      table#tablaEquipoaMover.table.table-bordered.table-striped
+                        thead
+                          th Sede
+                          th Campaña
+                          th Piso
+                          th Puesto
+                          th Tipo
+                          th Marca
+                          th Modelo
+                          th Serial
+                          th Plaqueta
+                          th Asignado
+                        tbody
+                  .row
+                    .col-xs-12
+                      // /.box
+                      .box
+                        .box-body
+                          .row
+                            .col-md-3
+                              .form-group
+                                label Ciudad
+                                select.form-control.select2#select11(style='width: 100%;')
+                                  option(selected='selected' value='null') Seleccione uno
+                            .col-md-3
+                              .form-group
+                                label Sede
+                                select.form-control.select2#select22(style='width: 100%;')
+                                  option(selected='selected' value='null') Seleccione uno
+                            .col-md-3
+                              .form-group
+                                label Campaña
+                                select.form-control.select2#select33(style='width: 100%;')
+                                  option(selected='selected' value='null') Seleccione uno
+                            .col-md-3
+                              .form-group.col-md-6
+                                .row
+                                  a.btn.btn-app#botonconsulta1
+                                    i.fa.fa-play
+                                    |  Ejecutar
+                          // /.row
+                        // /.box-header
+                        .box-body
+                          table#example3.table.table-bordered.table-striped
+                            thead
+                              th Sede
+                              th Campaña
+                              th Nombre Area
+                              th Ubicacion
+                              th Piso
+                              th Puesto
+                              th Asignado
+                              th Opciones
+                            tbody
+              .panel.box.box-success
+                .box-header.with-border
+                  h4.box-title
+                    a.collapsed(data-toggle='collapse', data-parent='#accordion', href='#collapseThree', aria-expanded='false')
+                      | 3 - Seleccione Destino de Equipo Sobrante
+                #collapseThree.panel-collapse.collapse(aria-expanded='false')
+                  .box-body
+                    table#example4.table.table-bordered.table-striped
+                      thead
+                        th Ciudad
+                        th Sede
+                        th Tipo
+                        th Marca
+                        th Modelo
+                        th Equipo S/N
+                        th Equipo Placa
+                        th Opciones
+                      tbody
+          // /.box-body
+        .box.box-solid
+          .box-footer
+            button#botonmovipendiente.btn.btn-primary(type='button') Consultar Pendientes
+    #confirmTraslado.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModal
+    #modalOK.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog(role='document')
+          .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h2.modal-title Info Modal
+              .modal-body
+                h4
+                p
+              .modal-footer
+                button#botondismiss.btn.btn-outline.pull-left(type='button', data-dismiss='modal') Cerrar
+  append footer
+    script(src='plugins/jQuery/jquery-2.2.3.min.js')
+    script(src='plugins/datatables/jquery.dataTables.min.js')
+    link(rel='stylesheet', href='plugins/datatables/jquery.dataTables.min.css')
+    script(src='./dist/js/app-movimiento.js')

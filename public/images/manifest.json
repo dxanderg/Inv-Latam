@@ -1,0 +1,7 @@
+{
+  "name": "inv-latam",
+  "short_name": "inv-latam",
+  "lang": "es-ES",
+  "start_url": "/",
+  "display": "standalone"
+}

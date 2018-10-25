@@ -1,0 +1,90 @@
+extends layout
+
+block content
+  .content-wrapper
+    script.
+      ciudadUser="#{locals.currentuser.ciudad}"
+      perfiluser="#{locals.currentuser.perfil}"
+      idPais="#{locals.currentuser.idPais}"
+      nombrePais="#{locals.currentuser.pais}"
+      idCiudad="#{locals.currentuser.idCiudad}"
+      nombreCiudad="#{locals.currentuser.ciudad}"
+    // Content Header (Page header)
+    section.content-header
+      h1
+        | Consultas Ubicaciones TI
+        small Por Sedes
+      ol.breadcrumb
+        li
+          a(href='#') 
+            i.fa.fa-dashboard
+            |  Inicio
+        li.active Consultas Ubicaciones TI x sedes
+    // Main content
+    section.content
+      section.content
+        .row
+          .col-xs-12
+            // /.box
+            .box
+              .box-body
+                .row
+                  .col-md-3
+                    .form-group
+                      label Ciudad
+                      select.form-control.select2#select1(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group
+                      label Sede
+                      select.form-control.select2#select2(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group
+                      label Campaña
+                      select.form-control.select2#select3(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group.col-md-6
+                      .row
+                        a.btn.btn-app#botonconsulta
+                          i.fa.fa-play
+                          |  Ejecutar
+                // /.row
+              // /.box-header
+              .box-body
+                table#example2.table.table-bordered.table-striped
+                  thead
+                    th Sede
+                    th Campaña
+                    th Nombre Area
+                    th Ubicacion
+                    th Piso
+                    th Puesto
+                    th Opciones
+                  tbody
+      #cambioUbicacion.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModal
+      #insertarModal.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModalInsertar
+      #modalOK.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')      
+        .modal-dialog(role='document')
+          .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h2.modal-title Info Modal
+              .modal-body
+                h4
+                p
+              .modal-footer
+                button.btn.btn-outline.pull-left(type='button', data-dismiss='modal') Cerrar
+  append footer
+    script(src='plugins/jQuery/jquery-2.2.3.min.js')
+    script(src='plugins/datatables/jquery.dataTables.min.js')
+    link(rel='stylesheet', href='plugins/datatables/jquery.dataTables.min.css')
+    script(src='./dist/js/app-ubicaciones.js')

@@ -1,0 +1,76 @@
+extends layout
+
+block content
+  .content-wrapper
+    script.
+      ciudadUser="#{locals.currentuser.ciudad}"
+      perfiluser="#{locals.currentuser.perfil}"
+      idPais="#{locals.currentuser.idPais}"
+      nombrePais="#{locals.currentuser.pais}"
+      idCiudad="#{locals.currentuser.idCiudad}"
+      nombreCiudad="#{locals.currentuser.ciudad}"
+    // Content Header (Page header)
+    section.content-header
+      h1
+        | Reportes de Activos TI
+        small Por sedes
+      ol.breadcrumb
+        li
+          a(href='#') 
+            i.fa.fa-dashboard
+            |  Inicio
+        li.active Reportes de activos TI x sedes
+    // Main content
+    section.content
+      section.content
+        h2 &#8643; Reporte por Sede / Campaña
+        .row
+          .col-xs-12
+            // /.box
+            .box
+              .box-body
+                .row
+                  .col-md-3
+                    .form-group
+                      label Ciudad
+                      select.form-control.select2#select1(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group
+                      label Sede
+                      select.form-control.select2#select2(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group
+                      label Campaña
+                      select.form-control.select2#select3(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group.col-md-6
+                      .row
+                        a.btn.btn-app#botonconsulta
+                          i.fa.fa-play
+                          |  Ejecutar
+        h2 &#8643; Reporte por Pais
+        .row
+          .col-xs-12
+            // /.box
+            .box
+              .box-body
+                .row
+                  .col-md-3
+                    .form-group
+                      label Pais
+                      select.form-control.select2#select4(style='width: 100%;')
+                        option(selected='selected' value='null') Seleccione uno
+                  .col-md-3
+                    .form-group.col-md-6
+                      .row
+                        a.btn.btn-app#botonconsulta2
+                          i.fa.fa-play
+                          |  Ejecutar
+  append footer
+    script(src='plugins/jQuery/jquery-2.2.3.min.js')
+    script(src='plugins/datatables/jquery.dataTables.min.js')
+    link(rel='stylesheet', href='plugins/datatables/jquery.dataTables.min.css')
+    script(src='./dist/js/app-reportes.js')

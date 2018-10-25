@@ -1,0 +1,344 @@
+extends layout
+
+block content
+  .content-wrapper
+    script.
+      ciudadUser="#{locals.currentuser.ciudad}"
+      perfiluser="#{locals.currentuser.perfil}"
+      idPais="#{locals.currentuser.idPais}"
+      nombrePais="#{locals.currentuser.pais}"
+      idCiudad="#{locals.currentuser.idCiudad}"
+      nombreCiudad="#{locals.currentuser.ciudad}"
+    // Content Header (Page header)
+    section.content-header
+      h1
+        | Insertar Ubicaciones
+        small Por sedes
+      ol.breadcrumb
+        li
+          a(href='#') 
+            i.fa.fa-dashboard
+            |  Inicio
+        li.active Ingreso de Ubicaciones TI x sedes
+    // Main content
+    section.content
+      section.content
+        .row
+          .col-xs-12
+            // /.box
+            .box
+              .box-body
+                .row
+                  .col-md-12.mx-auto
+                    form#edit-form(method='post', action='/insertar', data-toggle='validator', role='form')
+                      .nav-tabs-custom
+                        ul.nav.nav-pills
+                          li.active
+                            a(href='#tab_1', data-toggle='tab', aria-expanded='true')
+                              | PISO 
+                              .ripple-container
+                          li
+                            a(href='#tab_2', data-toggle='tab', aria-expanded='false')
+                              | PUESTO
+                              .ripple-container
+                          li
+                            a(href='#tab_3', data-toggle='tab', aria-expanded='false')
+                              | UBICACION
+                              .ripple-container
+                          li
+                            a(href='#tab_4', data-toggle='tab', aria-expanded='false')
+                              | CAMPAÑA
+                        .tab-content(style='height: auto; margin-top: -10px;')
+                          #tab_1.tab-pane.active
+                            .grupo
+                              .row
+                                .col-md-11
+                                  h3.text-center INSERTAR PISO
+                            .grupo
+                              row.col-sm-12
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='propietario') Ingrese Nombre de Piso :
+                                  .col-sm-7
+                                    input.form-control(type='text', placeholder='Ingrese Nombre de Piso')
+                            .grupo
+                              row.col-sm-12.offset-sm-6
+                                row.form-group
+                                  row.col-sm-4.offset-sm-2
+                                    button#submitButtonPiso.btn.btn-primary(type='button') Ingresar
+                                  row.col-sm-4.offset-sm-2
+                                    button#cancelButton.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+                            .grupo
+                              row.col-sm-12
+                                .progress
+                                  .progress-bar.progress-bar-red(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                                    span.sr-only 100% Complete
+                            .grupo
+                              .col-md-3.col-md-offset-3
+                                h3.text-center CONSULTA Y EDICION DE PISO
+                              .col-md-3
+                                .form-group.col-md-6
+                                  .row
+                                    a.btn.btn-app#botonconsultapisos
+                                      i.fa.fa-play
+                                      |  Ejecutar
+                                  .row(style='display: none;')
+                                    a.btn.btn-app#botondummy(hidden='')
+                                      i.fa.fa-play
+                                      |  Dummy    
+                            .grupo
+                              row
+                                table#tabla-piso.table.table-bordered.table-striped
+                                  thead
+                                    th Indice
+                                    th Nombre Piso
+                                    th Opciones
+                                    th
+                                  tbody
+                          #tab_2.tab-pane
+                            .grupo
+                              .row
+                                .col-md-11
+                                  h3.text-center INSERTAR PUESTO
+                            .grupo
+                              row.col-sm-12
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='propietario') Ingrese N° Puesto :
+                                  .col-sm-7
+                                    input.form-control(type='text', placeholder='Ingrese Numero de Puesto')
+                            .grupo
+                              row.col-sm-12.offset-sm-6
+                                row.form-group
+                                  row.col-sm-4.offset-sm-2
+                                    button#submitButtonPuesto.btn.btn-primary(type='button') Ingresar
+                                  row.col-sm-4.offset-sm-2
+                                    button#cancelButton.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+                            .grupo
+                              row.col-sm-12
+                                .progress
+                                  .progress-bar.progress-bar-red(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                                    span.sr-only 100% Complete
+                            .grupo
+                              .col-md-3.col-md-offset-3
+                                h3.text-center CONSULTA Y EDICION DE PUESTO
+                              .col-md-3
+                                .form-group.col-md-6
+                                  .row
+                                    a.btn.btn-app#botonconsultapuesto
+                                      i.fa.fa-play
+                                      |  Ejecutar
+                                  .row(style='display: none;')
+                                    a.btn.btn-app#botondummy(hidden='')
+                                      i.fa.fa-play
+                                      |  Dummy  
+                            .grupo
+                              row
+                                table#tabla-puesto.table.table-bordered.table-striped
+                                  thead
+                                    th Indice
+                                    th Numero de Puesto
+                                    th Opciones
+                                    th
+                                  tbody
+                          #tab_3.tab-pane
+                            .grupo
+                              .row
+                                .col-md-11
+                                  h3.text-center INSERTAR UBICACION
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='propietario') Pais :
+                                  .col-sm-7
+                                    input#pais.form-control(type='text', placeholder='', value=currentuser.pais, disabled='')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') Ciudad :
+                                  .col-sm-8
+                                    select#selectCiudad.form-control(name='cod_ciudad')
+                                      option(value=currentuser.idCiudad)=currentuser.ciudad
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='nombrearea') Sede :
+                                  .col-sm-7
+                                    select#selectSede.form-control(name='cod_sede')
+                                      option(value='') Seleccione la Sede
+                                      for val in consulta4
+                                        option(value=val.cod_sede)= val.nombre_sede
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') Piso :
+                                  .col-sm-8
+                                    select#selectPiso.form-control(name='cod_piso')
+                                      option(value='') Seleccione el Piso
+                                      for val in consulta0
+                                        option(value=val.cod_piso)= val.nombre_piso
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='nombrearea') Puesto :
+                                  .col-sm-7
+                                    select#selectPuesto.form-control(name='cod_puesto')
+                                      option(value='') Seleccione el Puesto
+                                      for val in consulta1
+                                        option(value=val.cod_puesto)= val.num_puesto
+                            .grupo
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') Campaña :
+                                  .col-sm-8
+                                    select#selectCampana.form-control(name='cod_campana')
+                                      option(value='') Seleccione la Campaña
+                            .grupo
+                              row.col-sm-12.offset-sm-6
+                                row.form-group
+                                  row.col-sm-4.offset-sm-2
+                                    button#submitButtonUbica.btn.btn-primary(type='button') Ingresar
+                                  row.col-sm-4.offset-sm-2
+                                    button#cancelButton.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+                            .grupo
+                              row.col-sm-12
+                                .progress
+                                  .progress-bar.progress-bar-red(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                                    span.sr-only 100% Complete
+                            .grupo
+                              .col-md-3.col-md-offset-3
+                                .form-group
+                                  H3 CONSULTA Y EDICION DE UBICACIONES
+                              .col-md-3
+                                .form-group.col-md-6
+                                  .row
+                                    a.btn.btn-app#botonconsultaubicaciones
+                                      i.fa.fa-play
+                                      |  Ejecutar
+                                  .row(style='display: none;')
+                                    a.btn.btn-app#botondummy(hidden='')
+                                      i.fa.fa-play
+                                      |  Dummy
+                            .grupo
+                              table#tablaUbicacion.table.table-bordered.table-striped
+                                thead
+                                  th Pais
+                                  th Ciudad
+                                  th Sede
+                                  th Campaña
+                                  th Nombre Piso
+                                  th Numero Puesto
+                                  th Opciones
+                                tbody
+                          #tab_4.tab-pane
+                            .grupo
+                              .row
+                                .col-md-11
+                                  h3.text-center INSERTAR CAMPAÑA
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='propietario') Pais :
+                                  .col-sm-7
+                                    input#pais.form-control(type='text', placeholder='', value=currentuser.pais, disabled='')
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') Ciudad :
+                                  .col-sm-8
+                                    select#selectCiudad.form-control(name='cod_ciudad')
+                                      option(value=currentuser.idCiudad)=currentuser.ciudad
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='nombrearea') Sede :
+                                  .col-sm-7
+                                    select#selectSedeCampana.form-control(name='cod_sede_campana')
+                                      option(value='') Seleccione la Sede
+                                      for val in consulta4
+                                        option(value=val.cod_sede)= val.nombre_sede
+                              row.col-sm-6
+                                row.form-group
+                                  .col-sm-4
+                                    label.titulos(for='nombrearea') Campaña :
+                                  .col-sm-8
+                                    input.form-control(type='text', placeholder='Ingrese Nombre Campaña')
+                            .grupo
+                              row.col-sm-5
+                                row.form-group
+                                  .col-sm-3
+                                    label.titulos(for='nombrearea') CECO :
+                                  .col-sm-7
+                                    input.form-control(type='text', placeholder='Ingrese Numero CECO')
+                            .grupo
+                              row.col-sm-12.offset-sm-6
+                                row.form-group
+                                  row.col-sm-4.offset-sm-2
+                                    button#submitButtonCampana.btn.btn-primary(type='button') Ingresar
+                                  row.col-sm-4.offset-sm-2
+                                    button#cancelButton.btn.btn-danger(type='button', data-dismiss='modal') Cancelar
+                            .grupo
+                              row.col-sm-12
+                                .progress
+                                  .progress-bar.progress-bar-red(role='progressbar', aria-valuenow='100', aria-valuemin='0', aria-valuemax='100', style='width: 100%')
+                                    span.sr-only 100% Complete
+                            .grupo
+                              .col-md-3.col-md-offset-3
+                                .form-group
+                                  H3 CONSULTA Y EDICION DE CAMPAÑAS
+                              .col-md-3
+                                .form-group.col-md-6
+                                  .row
+                                    a.btn.btn-app#botonconsultacampana
+                                      i.fa.fa-play
+                                      |  Ejecutar
+                                  .row(style='display: none;')
+                                    a.btn.btn-app#botondummy(hidden='')
+                                      i.fa.fa-play
+                                      |  Dummy
+                            .grupo
+                              table#tabla-campana.table.table-bordered.table-striped
+                                thead
+                                  th Ciudad
+                                  th Sede
+                                  th Campaña
+                                  th CECO
+                                  th Opciones
+                                tbody
+                          // /.tab-pane
+
+      #confirmModal.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModal
+      #ModalMensaje.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModalTraslado
+      #insertarModal.modal.fade.col-sm-12(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true', data-backdrop='static', data-keyboard='false')      
+        .modal-dialog.modal-lg(role='document')
+          .modal-content
+            #tableModalInsertar
+      #modalOK.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')      
+        .modal-dialog(role='document')
+          .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h2.modal-title Info Modal
+              .modal-body
+                h4
+                p
+              .modal-footer
+                button.btn.btn-outline.pull-left(type='button', data-dismiss='modal') Cerrar
+  append footer
+    script(src='plugins/jQuery/jquery-2.2.3.min.js')
+    //- //- script(src='/dist/js/bootstrapvalidator.js')
+    //- script(src='/dist/js/validacion.js')
+    script(src='/dist/js/app-insertarUbica.js')

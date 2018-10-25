@@ -1,0 +1,55 @@
+#tableModal,
+#tableModalTraslado,
+#tableModalInsertar,
+#mensajeModal{
+	padding: .5em;
+}
+
+#tableModal h2,
+#tableModalTraslado h2,
+#tableModalInsertar h2,
+#mensajeModal h2{
+	padding-bottom: .5em;
+}
+
+#tableModal .titulos,
+#tableModalTraslado .titulos,
+#tableModalInsertar .titulos,
+#mensajeModal .titulos{
+	color: black;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-bottom: 1em;
+}
+
+#tableModal .info,
+#tableModalTraslado .info,
+#tableModalInsertar .info,
+#mensajeModal .info{
+	color: #797979;
+	text-transform: capitalize;
+	font-style: italic;
+}
+
+
+body{
+	zoom: 90%;
+}
+
+.main-footer{
+	    margin-top: 72px;
+}
+
+/*#tabla_software_edit.table-bordered,
+#tabla_periferico_edit.table-bordered,
+#tabla_software.table-bordered,
+#tabla_periferico.table-bordered {
+    border: 1px solid #41484D
+}
+
+#tabla_software_edit.table-bordered,
+#tabla_periferico_edit.table-bordered,
+#tabla_software.table-bordered,
+#tabla_periferico.table-bordered>thead>tr>th,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>tbody>tr>td,.table-bordered>tfoot>tr>td {
+    border: 1px solid #41484D
+}*/
